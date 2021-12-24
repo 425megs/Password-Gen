@@ -15,14 +15,7 @@ function writePassword() {
 
 // need an empty array where password will live 
 var mainArray = []
-
-
-// prompts for password criteria
-// window.prompt("How long do you want your password to be? Select a number between 8-128")
-// window.confirm("Do you want to include numbers?")
-// window.confirm("Do you want to include lowercase letters?")
-// window.confirm("Do you want to include uppercase letters?")
-// window.confirm("Do you want to include special characters?")
+var passwordString = ""
 
 // something like... 
 // if 'okay' for uppercase ... then generate a random letter between A-Z
@@ -33,7 +26,7 @@ var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N
 var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 // if 'okay' for special characters ... then randomly select from "~!@#$%^&*()-+<>"
 //   else ...?
-var specs = ["!",",",'"',"#","$","%","&","'","(",")","*","+","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","{","|","}","~"]
+var specs = ["!", ",", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "{", "|", "}", "~"]
 // if 'okay' for numbers ... randomly select number between 0-9
 var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
@@ -43,15 +36,15 @@ var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 function generatePassword() {
   var length = prompt("How long do you want your password to be? Select a number between 8-128");
-  console.log(length)
+  // console.log(length)
   var addUpperCase = confirm("Do you want to include uppercase letters?")
-  console.log(upperCase)
-  var addLowerCase = confirm("Do you want to include uppercase letters?")
-  console.log(lowerCase)
-  var addNumbers = confirm("Do you want to include uppercase letters?")
-  console.log(numbers)
-  var addSpecialChar = confirm("Do you want to include uppercase letters?")
-  console.log(specialChar)
+  // console.log(upperCase)
+  var addLowerCase = confirm("Do you want to include lowercase letters?")
+  // console.log(lowerCase)
+  var addNumbers = confirm("Do you want to include numbers?")
+  // console.log(numbers)
+  var addSpecialChar = confirm("Do you want to include special characters?")
+  // console.log(specialChar)
 
   if (addUpperCase === true) {
     mainArray = mainArray.concat(upper);
@@ -66,6 +59,12 @@ function generatePassword() {
     mainArray = mainArray.concat(specs);
   }
 
+  for (var i = 0; i < length; i++) {
+    passwordString = passwordString.concat(mainArray[Math.floor(Math.random() * mainArray.length)]);
+  }
+
+  return passwordString;
+  // console.log(mainArray)
 }
 
 // Add event listener to generate button -- trigger to initiate function
